@@ -1,9 +1,21 @@
 extends layout.pug
 
 block content
-  div.p-5
-    h1.animate__animated.animate__pulse.animate__infinite.animate__slower= message
-    p= algumaVariavel
-    <!-- MARKDOWN -->
-block footer 
-  h1="LALALALALA"
+	div#search-section
+		center
+			img(src='img/eco_ru_border.png')
+			div
+				select#select-food
+					option(value="Proteina")
+						| Proteína
+					option(value="Vegetariano")
+						| Vegetariano
+					option(value="Guarnição")
+						| Guarnição
+					option(value="Sobremesa")
+						| Sobremesa
+				div#search
+					input(type='text' placeholder='Ex: Feijoada, Pernil em Cubos')
+					button(onclick='query()')
+						i.fa-solid.fa-magnifying-glass
+	div#result-section

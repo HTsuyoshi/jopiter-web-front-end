@@ -1,0 +1,6 @@
+{
+	"jopiter-backend": {
+		"url" : "http://localhost:8080"
+	},
+	"port" : "80"
+}
