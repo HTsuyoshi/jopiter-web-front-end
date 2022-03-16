@@ -1,0 +1,32 @@
+extends ecoru.pug
+
+block content
+    div#search-section
+        center
+            img(src='img/eco_ru.png')
+            div
+                input(type='text' placeholder='Ex:feijoada')#search
+                button
+                    i.fa-solid.fa-magnifying-glass
+    div#result-section
+        center
+            img(src='img/salad.png')
+            a(href='https://www.flaticon.com/free-icons/salad' title='salad icons')
+                | Salad icons created by Freepik - Flaticon
+            ul
+                li
+                    div.table
+                        | Nutricional
+                    progress(value='4' max='5')#nutricional
+                li
+                    div.table
+                        | Sensorial
+                    progress(value='4' max='5')#sensorial
+                li
+                    div.table
+                        | Ambiental
+                    progress(value='4' max='5')#ambiental
+                li
+                    div.table
+                        | SocioAmbiental
+                    progress(value='4' max='5')#socio-ambiental

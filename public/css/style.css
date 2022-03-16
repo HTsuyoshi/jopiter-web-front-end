@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+:root
+{
+	--segundary-color: #006809;
+	--main-color: #c1e4a7;
+	--white-color: #fefef2;
+	--shadow-color: #000000;
+
+	--img-padding: 6vh;
+	--field-padding: 10px;
+	--font-size: 14px;
+}
+
+body {
+	background: var(--white-color);
+	background-image: url('/img/bg-pattern.png');
+	background-size: 100px;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Roboto', sans-serif;
+}
+
+img {
+	display: block;
+	width: 15vw;
+	padding-bottom: var(--img-padding);
+}
+
+input, button
+{
+	border: none;
+	-webkit-appearance: none;
+	-ms-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	outline: none;
+	font-size: var(--font-size);
+}
+
+input
+{
+	background: var(--white-color);
+	padding: var(--field-padding);
+	border-radius: 50px 0px 0px 50px;
+	width: 15vw;
+}
+
+input:focus::placeholder {
+	color: transparent;
+}
+
+button
+{
+	background: var(--segundary-color);
+	color: var(--white-color);
+	padding: var(--field-padding);
+	border-radius: 0px 50px 50px 0px;
+	width: 60px;
+}
+
+progress {
+	border-radius: 0;
+	width: 100px;
+	height: var(--font-size);
+	box-shadow: 1px 1px 4px rgba( 1, 0, 0, 1 );
+}
+
+#search-section
+{
+	left: 0;
+	height: 100vh;
+	width: 30vw;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	background: var(--main-color);
+	box-shadow: 0px 0px 10px var(--shadow-color);
+}
+
+#result-section
+{
+	position: absolute;
+	top: 0;
+	left: 30vw;
+	height: 100vh;
+	width: 70vw;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+#result-section a
+{
+	font-size: 8px;
+	display: block;
+}
+
+#result-section ul
+{
+	list-style-type: none;
+	display: inline-block;
+	text-align: left;
+}
+
+#result-section ul li
+{
+	margin-top: 10px;
+	width: auto;
+}
+
+#result-section ul li div {
+	display: inline-block;
+	width: 150px;
+}
+
+@media (max-width: 1000px) {
+	body {
+		background: var(--main-color);
+	}
+	img {
+		padding-top: var(--img-padding);
+	}
+	input {
+		width: 30vw;
+	}
+	#search-section {
+		position: relative;
+		left: 0;
+		width: auto;
+		height: auto;
+		display: inline;
+		background: transparent;
+		box-shadow: 0px;
+	}
+	#result-section {
+		position: relative;
+		width: auto;
+		height: auto;
+		left: 0;
+		background: transparent;
+	}
+
+}

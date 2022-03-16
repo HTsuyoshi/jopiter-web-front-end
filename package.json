@@ -1,0 +1,22 @@
+{
+  "name": "classificador-web",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "license": "MIT",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/index.js",
+    "test-api": "npx json-server --watch test/data.json --port 3001"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.2",
+    "express": "^4.17.3",
+    "node-fetch": "^2.6.7",
+    "pug": "^3.0.2"
+  },
+  "devDependencies": {
+    "@types/node-fetch": "2.x",
+    "jest": "^27.5.1",
+    "json-server": "^0.17.0"
+  }
+}
