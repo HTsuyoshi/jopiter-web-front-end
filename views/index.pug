@@ -1,32 +1,43 @@
 extends layout.pug
 
 block content
-    div#search-section
-        center
-            img(src='img/eco_ru.png')
-            div
-                input(type='text' placeholder='Ex:feijoada')#search
-                button
-                    i.fa-solid.fa-magnifying-glass
-    div#result-section
-        center
-            img(src='img/salad.png')
-            a(href='https://www.flaticon.com/free-icons/salad' title='salad icons')
-                | Salad icons created by Freepik - Flaticon
-            ul
-                li
-                    div.table
-                        | Nutricional
-                    progress(value='4' max='5')#nutricional
-                li
-                    div.table
-                        | Sensorial
-                    progress(value='4' max='5')#sensorial
-                li
-                    div.table
-                        | Ambiental
-                    progress(value='4' max='5')#ambiental
-                li
-                    div.table
-                        | SocioAmbiental
-                    progress(value='4' max='5')#socio-ambiental
+	div#search-section
+		center
+			img(src='img/eco_ru_border.png')
+			div
+				select#select-food
+					option(value="Proteina")
+						| Proteína
+					option(value="Vegetariano")
+						| Vegetariano
+					option(value="Guarnição")
+						| Guarnição
+					option(value="Sobremesa")
+						| Sobremesa
+				div#search
+					input(type='text' placeholder='Ex: Feijoada, Pernil em Cubos')
+					button(onclick='query()')
+						i.fa-solid.fa-magnifying-glass
+	div#result-section
+		div.card#0
+			center
+				button#close-icon(onclick='close_card(0)')
+					i.fa-solid.fa-magnifying-glass
+				p#title
+					| Salada
+				img#food-icon(src='/img/vegan-food.png')
+				a#icon-ref(href='https://www.flaticon.com/free-icons/vegan' title='vegan icons')
+					| Vegan icons created by Freepik - Flaticon
+				ul
+					li
+						div.table
+							| Nutricional
+						progress#nutricional(value='4' max='5')
+					li
+						div.table
+							| Sensorial
+						progress#sensorial(value='3' max='5')
+					li
+						div.table
+							| Ambiental
+						progress#ambiental(value='5' max='5')
