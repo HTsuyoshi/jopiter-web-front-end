@@ -17,7 +17,7 @@ function set_card_visible() {
 
 function insert_card(card_list, card_id) {
 
-	var content = "<div class='card' id='" + card_id + "'><center><button id='close-icon' onclick='close_card(" + card_id + ")'><i class='fa-solid fa-magnifying-glass'></i></button>";
+	var content = "<div class='card' id='" + card_id + "'><center><button id='close-icon' onclick='close_card(" + card_id + ")'><i class='fa-solid fa-x'></i></button>";
 
 	var icon_src = "", icon_text = "", icon_href = "", icon_title = "";
 
@@ -54,9 +54,23 @@ function insert_card(card_list, card_id) {
 		attr[i] = Math.floor(Math.random() * 6);
 	}
 
-	content += "<p id='title'>" + typeSelected.value + "<p/><img id='food-icon' src=" + icon_src + "><a id='icon-ref' href=" + icon_href + " title=" + icon_title + ">" + icon_text + "<a/><ul><li><div class='table'>Nutricional</div><progress id='nutricional' value='" + attr[0] + "' max='5'></progress></li><li><div class='table'>Sensorial</div><progress id='sensorial' value='" + attr[1] + "' max='5'></progress></li><li><div class='table'>Ambiental</div><progress id='ambiental' value='" + attr[2] + "' max='5'></progress></li></ul><center/><div/>";
+	content += "<div id='title'>" + typeSelected.value + "</div><img id='food-icon' src=" + icon_src + "><a id='icon-ref' href=" + icon_href + " title=" + icon_title + ">" + icon_text + "</a><ul>";
+
+	content += "<li><div class='table'>Nutricional</div><progress id='nutricional' value='" + attr[0] + "' max='5'></progress></li>";
+	content += "<li><div class='table'>Sensorial</div><progress id='sensorial' value='" + attr[1] + "' max='5'></progress></li>";
+	content += "<li><div class='table'>Ambiental</div><progress id='ambiental' value='" + attr[2] + "' max='5'></progress></li>";
+
+	content += "</ul><center/><div/>";
 
 	card_list.insertAdjacentHTML('afterbegin', content);
+}
+
+function resize_card() {
+	const card_quant = document.getElementsByClassName("card").length;
+	const new_size = 300/card_quant;
+	for (var i=0; i<card_quant; i++) {
+		document.getElementById(i).style.width = new_size;
+	}
 }
 
 // Get information about the meal
@@ -64,7 +78,8 @@ function insert_card(card_list, card_id) {
 function query() {
 
 	const card_quant = document.getElementsByClassName("card").length;
-	if (card_quant > 2) return;
+	if (card_quant > 3 && window.innerWidth < 1400
+	|| card_quant > 5) return;
 
 
 	const query = document.getElementsByTagName("input");
@@ -75,8 +90,9 @@ function query() {
 	const card_list = document.getElementById('result-section');
 	insert_card(card_list, card_quant);
 
-	card_animation();
+	resize_card();
 
+	card_animation();
 }
 
 //////////// QUERY ////////////
@@ -89,7 +105,7 @@ function close_card(card_id) {
 	const card = document.getElementById(card_id);
 	const parent = document.getElementById('result-section');
 	parent.removeChild(card);
-
+	resize_card();
 }
 
 // Card animation on query()
