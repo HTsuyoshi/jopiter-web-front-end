@@ -50,11 +50,11 @@ function insert_card(card_list, card_id) {
 	}
 	
 	var attr = [];
-	for(let i=0; i<attr.length; i++) {
+	for(let i=0; i<3; i++) {
 		attr[i] = Math.floor(Math.random() * 6);
 	}
 
-	content += "<div id='title'>" + typeSelected.value + "</div><img id='food-icon' src=" + icon_src + "><a id='icon-ref' href=" + icon_href + " title=" + icon_title + ">" + icon_text + "</a><ul>";
+	content += "<div id='title'>" + document.getElementById('search-input').value + "</div><img id='food-icon' src=" + icon_src + "><a id='icon-ref' href=" + icon_href + " title=" + icon_title + ">" + icon_text + "</a><ul>";
 
 	content += "<li><div class='table'>Nutricional</div><progress id='nutricional' value='" + attr[0] + "' max='5'></progress></li>";
 	content += "<li><div class='table'>Sensorial</div><progress id='sensorial' value='" + attr[1] + "' max='5'></progress></li>";
@@ -68,8 +68,9 @@ function insert_card(card_list, card_id) {
 function resize_card() {
 	const card_quant = document.getElementsByClassName("card").length;
 	const new_size = 300/card_quant;
-	for (var i=0; i<card_quant; i++) {
-		document.getElementById(i).style.width = new_size;
+	for (let i=0; i<card_quant; i++) {
+		if (document.getElementById(i))
+			document.getElementById(i).style.width = new_size;
 	}
 }
 
@@ -77,7 +78,8 @@ function resize_card() {
 
 function query() {
 
-	const card_quant = document.getElementsByClassName("card").length;
+	const cards = document.getElementsByClassName("card");
+	const card_quant = cards.length;
 	if (card_quant > 3 && window.innerWidth < 1400
 	|| card_quant > 5) return;
 
@@ -88,7 +90,15 @@ function query() {
 	first_query_animation();
 
 	const card_list = document.getElementById('result-section');
-	insert_card(card_list, card_quant);
+	var card_id = 0;
+
+	for (let i=cards.length - 1; i>-1; i--) {
+		if (cards[i].id > card_id)
+			card_id = cards[i].id;
+		console.log(cards[i].id);
+	}
+
+	insert_card(card_list, parseInt(card_id) + 1);
 
 	resize_card();
 
@@ -105,6 +115,7 @@ function close_card(card_id) {
 	const card = document.getElementById(card_id);
 	const parent = document.getElementById('result-section');
 	parent.removeChild(card);
+	card_animation();
 	resize_card();
 }
 
